@@ -75,8 +75,8 @@ echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.c
 # Build Harmony on the fly and delete all build tools afterwards
 RUN \
   apk add --update git                                                && \
-  git clone --depth 1 -b hive https://github.com/ether-camp/ethereum-harmony.git && \
-  (cd ethereum-harmony && ./gradlew build -x test)
+  git clone -b develop https://github.com/genecyber/ethereum-harmony.git && \
+  cd ethereum-harmony
 
 
 # Make sure bash and jq is available for easier wrapper implementation
