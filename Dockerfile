@@ -72,23 +72,26 @@ RUN apk upgrade --update && \
            /tmp/* /var/cache/apk/* && \
 echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
 
+RUN mkdir /usr/src
 # Build Harmony on the fly and delete all build tools afterwards
 RUN \
   apk add --update git                                                && \
-  git clone -b develop https://github.com/genecyber/ethereum-harmony.git && \
-  cd ethereum-harmony
+  git clone -b develop https://github.com/genecyber/ethereum-harmony.git /usr/src/ethereum-harmony
 
+WORKDIR /usr/src/ethereum-harmony
+RUN pwd
+RUN ls -al
 
 # Make sure bash and jq is available for easier wrapper implementation
 RUN apk add --update bash jq
-WORKDIR /root/ethereum-harmony
+
 # Inject the startup script
-ADD run.sh harmony.sh
-RUN chmod +x harmony.sh
+ADD run.sh /usr/src/ethereum-harmony/harmony.sh
+RUN chmod +x /usr/src/ethereum-harmony/harmony.sh
 
 # Export the usual networking ports to allow outside access to the node
 EXPOSE 8545 8546 30303
 
-ENTRYPOINT ["ls -al"]
+ENTRYPOINT ["/usr/src/ethereum-harmony/harmony.sh"]
 
 #EOF
