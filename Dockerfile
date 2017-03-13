@@ -81,14 +81,14 @@ RUN \
 
 # Make sure bash and jq is available for easier wrapper implementation
 RUN apk add --update bash jq
-
+WORKDIR /ethereum-harmony
 # Inject the startup script
-ADD run.sh ethereum-harmony/harmony.sh
-RUN chmod +x ethereum-harmony/harmony.sh
+ADD run.sh harmony.sh
+RUN chmod +x harmony.sh
 
 # Export the usual networking ports to allow outside access to the node
 EXPOSE 8545 8546 30303
-WORKDIR /ethereum-harmony
+
 ENTRYPOINT ["harmony.sh"]
 
 #EOF
