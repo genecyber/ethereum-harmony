@@ -1,1 +1,1 @@
-cmd: harmony.sh
+web: /usr/src/ethereum-harmony/harmony.sh
