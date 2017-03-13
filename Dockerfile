@@ -93,7 +93,7 @@ ADD Procfile /usr/src/ethereum-harmony/Procfile
 ADD src/main/resources/private.conf /usr/src/ethereum-harmony/src/main/resources/private.conf
 
 # Export the usual networking ports to allow outside access to the node
-EXPOSE 8546
+EXPOSE 30303 8080
 
 ENTRYPOINT ["/usr/src/ethereum-harmony/harmony.sh"]
 
