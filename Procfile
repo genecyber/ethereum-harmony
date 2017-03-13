@@ -1,1 +1,1 @@
-cmd: bash run.sh
+cmd: harmony.sh
