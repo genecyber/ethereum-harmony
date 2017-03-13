@@ -1,1 +1,1 @@
-cmd: gradlew runPrivate
+cmd: run.sh
